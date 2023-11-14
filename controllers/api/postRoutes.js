@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+//add post
 router.post('/', withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
@@ -11,27 +12,23 @@ router.post('/', withAuth, async (req, res) => {
 
     res.status(200).json(newPost);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+//delete post
+router.delete('/delete-post', async (req, res) => {
   try {
-    const postData = await Post.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
+      const postId = req.body.Post_id;
+      console.log(postId)
 
-    if (!postData) {
-      res.status(404).json({ message: 'No post found with this id!' });
-      return;
-    }
-
-    res.status(200).json(postData);
-  } catch (err) {
-    res.status(500).json(err);
+      const deletePost = await Blogpost.destroy({
+          where: { id: postId }
+          })
+      res.sendStatus(200).send
+  } catch (error) {
+      console.error(error);
+      res.sendStatus(500); 
   }
 });
 
