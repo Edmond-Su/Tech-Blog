@@ -8,10 +8,27 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            {{#if logged_in}}
+            <button class="no-button" id="logout">logout</button>
+            {{else}}
+            <a href="/login">Login</a>
+            {{/if}}
+        </nav>
+        <br>
+        <h1>Tech Blog</h1>
+    </header>
+</body>
 
 
 <footer>
-    <script src="/js/index.js"></script>
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </footer>
 
 </html>

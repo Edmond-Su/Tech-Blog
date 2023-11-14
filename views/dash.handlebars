@@ -1,0 +1,52 @@
+<html lang="en">
+<link rel="stylesheet" href="/css/dashboard.css" />
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    {{#each Posts as |post|}}
+    <div class="center">
+        <h2>{{title}}</h2>
+        <p id="date">{{format_date date_created}}</p>
+        <p class="info">{{description}}</p>
+        <button class="delete-button" data-postid={{id}}>Delete</button>
+        <button class="update-button" data-postid={{id}}>Update</button>
+    </div>
+    <div class="update-form" style="display:none;">
+        <form class="post-update-form">
+            <input type="text" class="update-title" placeholder="New title" required /><br /><br />
+            <textarea class="update-description" rows="6" cols="70" placeholder="Type your updated post here"
+                required></textarea><br /><br />
+            <input type="submit" class="save-button" value="Save Changes" />
+        </form>
+    </div>
+    {{/each}}
+
+    <div id="addButton">
+        <button id="add-post-button">Add Post</button>
+    </div>
+
+    <div id="post-form" style="display:none;">
+        <form id="post-form">
+            <div id="titleBox">
+                <input type="text" id="title" placeholder="Post title" required /><br /><br />
+            </div>
+
+            <div id="descriptionBox">
+                <textarea id="description" rows="6" cols="70" placeholder="Type your post in here"
+                    required></textarea><br /><br />
+            </div>
+            <div id="buttonSpacing">
+                <input id="submitButton" type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+
+</body>
+<script src="/js/post-add.js"></script>
+<script src="/js/post-delete.js"></script>
+
+</html>
