@@ -1,5 +1,5 @@
 const User = require('./User');
-const Post = require('./Project');
+const Post = require('./Post');
 const Comment = require('./Comment');
 
 User.hasMany(Post, {
@@ -7,7 +7,7 @@ User.hasMany(Post, {
   onDelete: 'CASCADE'
 });
 
-User.hasMany( Comments, {
+User.hasMany( Comment, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
