@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
       const Postdata = await Post.findAll();
   
-      const Posts = Postdata.map((post) => post.get({ plain: true }));
+      const Posts = Postdata.map((post) => Post.get({ plain: true }));
 
       res.render('home', { 
         Posts, 
@@ -86,3 +86,5 @@ router.get('/signup', (req, res) => {
   
     res.render('signup');
 });
+
+module.exports = router;
